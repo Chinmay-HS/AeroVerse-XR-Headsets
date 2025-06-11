@@ -14,5 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ComponentsScene.unity
     guid: 7f65f5ffa5e3448f89e4935f1e38e8bb
+  - enabled: 1
+    path: Assets/Scenes/TechCorner.unity
+    guid: a1a0716c57330475085fd38346afc837
   m_configObjects:
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 3ba4a3a564ee8604299447d45e6c61fb, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 95012d09627f14a848738e9b4618223c, type: 2}
