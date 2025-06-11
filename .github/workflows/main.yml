@@ -1,4 +1,4 @@
-name: Build APK on Release
+name: Build Unity APK on Release
 
 on:
   release:
@@ -6,23 +6,28 @@ on:
 
 jobs:
   build:
+    name: Build Android APK
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      # Step 1: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
+      # Step 2: Set up Python (for asset download)
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
-      - name: Install Python dependencies
+      - name: Install gdown
         run: pip install gdown
 
+      # Step 3: Download your models/videos using your script
       - name: Download External Assets
         run: python Scripts/download_assets.py
 
+      # Step 4: Cache Unity Library to speed up future builds
       - name: Cache Unity Library
         uses: actions/cache@v4
         with:
@@ -31,20 +36,18 @@ jobs:
           restore-keys: |
             Library-${{ runner.os }}-
 
-      - name: Set up Unity
-        uses: game-ci/unity-installer@v3
-        with:
-          unityVersion: 2022.3.55f1  # Replace with your Unity version
-
-      - name: Build Android APK
+      # Step 5: Build the project using game-ci/unity-builder
+      - name: Build APK
         uses: game-ci/unity-builder@v3
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
+          unityVersion: 2022.3.0f1  # replace with your exact Unity version
           targetPlatform: Android
           buildPath: Builds/Android
 
-      - name: Upload APK to GitHub Release
+      # Step 6: Upload built APK to GitHub Releases
+      - name: Upload APK to Release
         uses: softprops/action-gh-release@v2
         with:
           files: Builds/Android/*.apk
