@@ -4,8 +4,10 @@ import zipfile
 
 # Mapping of destination folder to Google Drive file ID
 files = {
-    "Assets/Resources/Videos": "11dVVoE7hjNYzezV0FHkYjtFKj8koP9a2",
-    "Assets/Resources/Models": "18jO-ApJXPotXaZKwS6pmFOAj1VBwkXqx"
+    "Assets/Resources/Videos": "1VbWAdiXEOEXyLOqoILahqaP7IukC4E5d",
+    "Assets/Resources/Models": "17SMDom8BkfoAGTIDDfpVZgyJ56Mehvo7",
+    "Assets/Resources/Animation": "1CdNiutcl0zC7JqukNxfzghSMdhLc0Nka",
+    
 }
 
 for folder_path, file_id in files.items():
